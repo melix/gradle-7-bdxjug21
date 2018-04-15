@@ -1,0 +1,4 @@
+task copyIt(type: Copy) {
+    from "someDir"
+    into "destinationDir"
+}

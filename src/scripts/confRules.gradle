@@ -1,0 +1,11 @@
+tasks.all {
+    doFirst {
+        println 'rule for all tasks, including those not yet created'
+    }
+}
+tasks.withType(Jar) {
+    destinationDir = "somePath"
+    doLast { /* do something */ }
+}
+
+tasks.whenTaskAdded { task -> println task.name }

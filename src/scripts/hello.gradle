@@ -1,0 +1,4 @@
+task hello {
+    onlyIf { day == 'monday' }
+    doLast { print "Let's have a great week!" }
+}

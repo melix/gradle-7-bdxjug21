@@ -1,0 +1,99 @@
+== Concepts
+
+=== Tasks
+
+* Provided by Gradle and plugins, they are the pieces doing the work during a build.
+* Extend a common type, `Task`
+
+=== Common methods
+
+[source, groovy]
+----
+include::{buildsdir}/hello.gradle[]
+----
+
+* `onlyIf` allows conditional execution
+* `doLast` adding actions to a task
+
+=== Specific APIs
+
+[source, groovy]
+----
+include::{buildsdir}/copy.gradle[]
+----
+
+* `from` and `into` are part of the configuration API from the `Copy` tasks
+* These APIs enable the declarative configuration of a build
+
+=== Tasks visibility
+
+By default, `gradle tasks` will only display tasks which are part of a group.
+
+[source, groovy]
+----
+include::{buildsdir}/group.gradle[]
+----
+
+=== Task dependencies
+
+[source, groovy]
+----
+include::{buildsdir}/depends.gradle[]
+----
+
+The heart of the Gradle execution model
+
+=== Task ordering
+
+[source, groovy]
+----
+include::{buildsdir}/ordering.gradle[]
+----
+
+=== Configurations
+
+A configuration is a container of dependencies and produced artifacts.
+
+A configuration can extend another one.
+
+Dependency resolution strategies of configurations can be adapted.
+
+=== Dependencies
+
+Dependencies represent external resources that your build needs to perform its work.
+
+When declaring a dependency, you tie it to a `Configuration`.
+
+More later on dependency management ...
+
+=== Lifecycle
+
+* Initialisation phase
+** Configuring the execution environment
+** Discovering projects
+
+=== Lifecycle (2)
+
+* Configuration phase
+** Build scripts evaluation
+** Model construction
+** Task graph construction
+
+=== Lifecycle (3)
+
+* Execution phase
+
+=== Lifecycle best practices
+
+* Do the minimum during configuration
+** At this stage, Gradle walks all configuration items to determine which need to be part of the execution
+
+=== Building the task graph
+
+Gradle will arrange tasks in an execution graph during the configuration phase:
+
+* Each task to be executed is a node
+* `dependsOn` defines the edges between nodes
+* No cycles are allowed
+
+This results in a Directed Acyclic Graph

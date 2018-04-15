@@ -1,0 +1,4 @@
+task generateCode
+task compileJava
+
+compileJava.dependsOn generateCode

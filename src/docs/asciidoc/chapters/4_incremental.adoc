@@ -1,0 +1,42 @@
+== Up to date and incremental tasks
+
+=== UP-TO-DATE
+
+It is the task level expression of Gradle efficiency,
+
+By describing the inputs and outputs of a task, Gradle can determine if it is _up to date_.
+
+And of course, an _up to date_ task can be skipped during execution.
+
+=== Inputs / Outputs
+
+A task needs to describe:
+
+* Its input / output files
+* Its input / output dirs
+* Input properties
+
+=== Incremental build
+
+A task is UP-TO-DATE iff:
+
+* Inputs have not changed
+* Outputs are still present and un-tampered
+
+=== Change detection
+
+* Hash of input / output files
+* Hash of contents of input / output folders
+* Serialize input properties
+
+=== Control change detection
+
+* `--rerun-tasks` bypasses up-to-date checks
+* Running at _info_ level will give you insights in up-to-date calculations
+
+=== Gotchas
+
+Adding a timestamp to a jar manifest will make the jar task always out of date.
+
+What if you do want / need that? Maybe you could only do it for a release build.
+

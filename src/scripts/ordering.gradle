@@ -1,0 +1,9 @@
+task unitTests {}
+task cleanUp {}
+
+task integrationTests {
+    mustRunAfter unitTests
+    // or: shouldRunAfter unitTests
+
+    finalizedBy cleanUp
+}

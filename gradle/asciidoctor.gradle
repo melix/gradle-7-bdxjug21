@@ -1,5 +1,6 @@
 asciidoctor {
     dependsOn download, copyTheme, copyScreencasts
+    inputs.dir 'src/scripts'
     sources {
         include 'index.adoc'
     }
@@ -16,6 +17,7 @@ asciidoctor {
             'endpoint-url': 'http://example.org',
             'source-highlighter': 'highlightjs',
             'imagesdir': './images',
+            'buildsdir': '../../../scripts',
             'toc': 'left',
             'icons': 'font',
             'setanchors': 'true',

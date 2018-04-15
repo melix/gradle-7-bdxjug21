@@ -1,0 +1,9 @@
+class MyExtension {
+    String someProperty
+}
+
+extensions.create("myDSL", MyExtension)
+
+myDSL {
+    someProperty = "someValue"
+}

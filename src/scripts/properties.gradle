@@ -1,0 +1,19 @@
+// tag::props[]
+task bar {
+    ext {
+        serviceUrl = 'http://example.com/service'
+        domainGroup = {
+            getGroup(serviceUrl)
+        }
+    }
+}
+
+task foo {
+    def fooProp = bar.domainGroup()
+}
+// end::props[]
+
+def getGroup(url) {
+    println "Getting group for $url"
+    url
+}

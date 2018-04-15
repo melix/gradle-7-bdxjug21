@@ -1,0 +1,66 @@
+== Gradle build cache
+
+=== Cached tasks
+
+It is the cross build level expression of Gradle efficiency.
+
+Based on tasks inputs, Gradle can fetch the outputs from cache instead of having to run the task.
+
+=== Usage scenarios
+
+* Local cache for faster `git bisect`
+* CI populated cache for faster _morning builds_ of developers
+* Faster CI feedback by reusing common elements
+** Pull request jobs usually vary from master only in a few modules
+
+=== Pre-requisites
+
+* Gradle up-to-date checks are working
+** Two subsequent invocations of the same build result in all tasks up-to-date
+* Tasks are declared _cacheable_
+** This is an opt-in support
+
+=== Cacheable tasks
+
+The benefit of getting the result from the cache only matters if the operation is expensive.
+
+By default in Gradle compilation tasks can be cached, but not copy tasks for example.
+
+=== Inputs / Outputs specifics
+
+While the system is similar to up-to-date checks, a few things need to be considered in addition:
+
+* Relative vs. absolute paths
+** Since the goal of caching is across builds, absolute paths will differ
+
+=== Enabling caching
+
+* Add `--build-cache` to your command line
+* Configure `org.gradle.caching=true` in `gradle.properties`
+
+=== Configuring local caching
+
+By default, a directory cache in the Gradle user home dir is used.
+
+.settings.gradle
+[source, groovy]
+----
+buildCache {
+    local(DirectoryBuildCache) {
+        directory = new File(rootDir, 'build-cache')
+        removeUnusedEntriesAfterDays = 30
+    }
+}
+----
+
+=== Configuring remote caching
+
+.settings.gradle
+[source, groovy]
+----
+buildCache {
+    remote(HttpBuildCache) {
+        url = 'https://example.com:8123/cache/'
+    }
+}
+----

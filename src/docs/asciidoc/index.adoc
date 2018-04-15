@@ -49,16 +49,70 @@ speaker {
         twitter '@ljacomet',
         github 'ljacomet',
         extraDescription '''Not fully figured out
-How to stay out of management?!?'''
+how to stay out of management?!?'''
 }
 ----
 
+== What is Gradle?
+
+Gradle is a build and automation tool.
+
+Gradle can automate the building, testing, publishing, deployment and more of software packages
+or other types of projects such as generated static websites, generated documentation or indeed anything else.
+
+* JVM based
+* Implemented in Java
+* 100% Free Open Source - Apache Standard License 2.0
+
+=== Gradle Inc.
+
+The company behind Gradle.
+
+* Build Happiness
+* Employs full time engineers
+* Providing Gradle Build Scans and Gradle Enterprise
+* Gradle consulting, support, development services etc.
+* Training: online, public and in-house
+
+Germany, Australia, UK, France, Switzerland, Austria, Poland, Hungary, Spain, Brazil, Belgium, Canada and the US.
+
 == Agenda
 
-* Utiliser Gradle
-* Conventions et plugins de base
-* Tâches incrémentales
-* Configuration avancée
-* Gestion des dépendances
-* Intégration dans l'IDE
-* Cache de tâches
+* Anatomy of a Gradle project
+* Use Gradle
+* Concepts and plugins
+* Incremental build and tasks
+* Advanced configuration
+* Dependency Management
+* IDE integration
+* Caching
+
+include::chapters/0_scans.adoc[]
+
+include::chapters/1_anatomy.adoc[]
+
+include::chapters/2_use.adoc[]
+
+include::chapters/3_concepts.adoc[]
+
+include::chapters/3_plugins.adoc[]
+
+include::chapters/4_incremental.adoc[]
+
+include::chapters/5_config.adoc[]
+
+include::chapters/6_dependencies.adoc[]
+
+include::chapters/7_ide.adoc[]
+
+include::chapters/8_caching.adoc[]
+
+== Conclusion
+
+=== Gradle Enterprise
+
+* On premise build cache and build scan solution
+* Out of the box solution for distributed build cache
+* Improved build scan feature set
+** Searchable build history
+** Build comparison

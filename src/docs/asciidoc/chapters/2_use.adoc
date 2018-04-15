@@ -1,0 +1,85 @@
+== Using Gradle
+
+=== The Gradle Wrapper
+
+image::gradle-wrapper.png[]
+
+[NOTE.speaker]
+--
+* Exec files
+* Wrapper dir
+--
+
+=== Using the Gradle Wrapper
+
+[source]
+----
+./gradlew tasks
+----
+
+Note the implicit invocation from the project root.
+With Gradle, no need to navigate inside project directories.
+Instead, you can pass a specific task name and path to execute.
+
+=== Invoking tasks
+
+[source]
+----
+./gradlew [taskName...] [--option-name...]
+----
+
+Where `taskName` is one or more tasks names, space separated.
+
+Each task can also reference a specific task in a subproject:
+
+[source]
+----
+./gradlew :server:test
+----
+
+=== Interesting options
+
+* `--exclude-task` or `-x`: To exclude one task from the execution graph
+[source]
+----
+./gradlew build -x test
+----
+* `--continue`: To continue with the build even when a task fails
+** Note: The dependents task(s) of the failed one will still not be executed.
+[source]
+----
+./gradlew test --continue
+----
+
+=== Task execution graph
+
+A Gradle build is really about executing a set of tasks that produce the needed output.
+The scope of the set is determined by the tasks requested on the command line and all tasks they depend upon.
+
+=== Logging
+
+* Gradle defines 6 log levels: `error`, `quiet`, `warning`, `lifecycle`, `info`, `debug`
+* Default log level (`lifecycle`) is minimalistic
+* Command line flags allow to set a different level:
+[source]
+----
+> gradle hello -i
+> gradle -q hello
+----
+
+When troubleshooting, `info` should be your first stop as `debug` has a _lot_ of output.
+
+[%notitle]
+[state=demo]
+=== Demo 1
+
+Demo
+
+[NOTE.speaker]
+--
+Cover:
+
+* Invocation camel case
+* One or more tasks
+* Think result instead of lifecycle
+--

@@ -1,0 +1,3 @@
+task taskFromPlugin() {
+    doLast { println "added by a script plugin!" }
+}

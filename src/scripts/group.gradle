@@ -1,0 +1,3 @@
+task hello {
+    group = 'Custom group'
+}

@@ -1,0 +1,106 @@
+== Advanced configuration
+
+=== Declarative vs. Imperative
+
+The ability to have code inside Gradle build scripts is a powerful feature.
+
+While it adds flexibility, abusing the feature leads to builds that are hard to understand.
+
+=== Gradle extensibility
+
+* Add _extra properties_ to objects
+* Add _extensions_ objects to existing objects
+
+Allows built in domain objects to be extended, including `Project`.
+
+Makes the _build language_ extensible.
+
+=== Extra properties
+
+[source, groovy]
+----
+include::{buildsdir}/properties.gradle[tag=props]
+----
+
+=== Extensions
+
+[source, groovy]
+----
+include::{buildsdir}/extension.gradle[]
+----
+
+=== Configuration rules
+
+[source, groovy]
+----
+include::{buildsdir}/confRules.gradle[]
+----
+
+=== Implicit task dependencies
+
+* `files(...)` definitions can be _buildable_
+** You can indicate which tasks builds its contents
+* Buildable input files / dir allows inferring the dependencies
+
+[source, groovy]
+----
+task generatedByMe { doLast { /*write into mydir*/ } }
+def myFiles = files("$buildDir/mydir") {
+  builtBy generatedByMe // could be many tasks
+}
+
+task copy(type: Copy) {
+  from myFiles // implicit dependsOn
+  into "someDir"
+}
+
+compileJava {
+  classpath = myFiles // implicit dependsOn
+}
+----
+
+=== SourceSet output
+
+Source sets have an `output` property. It references:
+
+* Class files
+* Processed resources
+
+[source, groovy]
+----
+task jar {
+  from sourceSets.main.output
+}
+----
+
+=== Script plugins
+
+.plugin.gradle
+[source, groovy]
+----
+include::{buildsdir}/plugin.gradle[]
+----
+
+.master.gradle
+[source, groovy]
+----
+include::{buildsdir}/master.gradle[]
+----
+
+Note: the script reference can be a URL
+
+=== Binary plugins
+
+* Implementation of the `Plugin` interface
+* Can be bundled in `buildSrc`
+* Can extend the Gradle model
+** New task types, extensions, ...
+
+=== Build code management
+
+* Use script plugins to decompose build scripts
+** Enhances comprehension and allows for reuse
+** Modularize according to domain (integ tests) or role (user/build admin)
+* Encapsulate the imperative into plugins and custom tasks
+* Enhance the API of the Gradle domain objects
+* Add your own declarative elements

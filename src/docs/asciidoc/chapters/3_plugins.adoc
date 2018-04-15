@@ -1,0 +1,56 @@
+== Base plugins
+
+=== Java Plugins: `java-base`
+
+* Defines additional tasks
+* Defines a set of _conventions_
+* Extends the DSL with declarative elements, such as `SourceSet`
+
+=== SourceSet
+
+Models a source code logical unit:
+
+* Input source files (Java, Groovy, Scala, ...)
+* Input resource files (`\*.properties`, `*.xml`, ...)
+* Output class files
+* Compilation and runtime classpaths
+* Tasks for processing inputs to outputs
+
+=== SourceSet conventions
+
+* Source: `src/<name>/<lang>`
+* Resources: `src/<name>/resources`
+* Compilation tasks: `compile<Name><Lang>`
+* Dependency configurations:
+** Compilation: `<name>Implementation`
+** Runtime: `<name>Runtime`
+
+=== Java Plugins: `java`
+
+* Adds task instances
+* Defines default values for added tasks
+* Defines `main` and `test` source sets
+* Adds _configurations_
+
+=== Naming conventions for `main`
+
+The `main` part is ignored, having the resulting name respect camel case.
+
+=== `java` tasks
+
+image::javaPluginTasks.png[]
+
+=== `java` configurations
+
+image::javaPluginConfigurations.png[]
+
+=== Java Plugins: `java-library`
+
+* Adds extra _configurations_
+* Express the difference in your dependencies:
+** The ones part of your API
+** The ones required at runtime by your implementation
+
+=== Plugin portal
+
+image::plugin_portal.png[link=https://plugins.gradle.org]

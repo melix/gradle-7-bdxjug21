@@ -1,0 +1,57 @@
+== Anatomy of a Gradle project
+
+Gradle is based on a set of conventions.
+
+Some inherited from the history of Java build systems:
+
+* `src/main/java`
+* `src/test/resources`
+
+Others brought by Gradle:
+
+* The name of the project is the name of the containing folder
+
+=== The build file
+
+* By default, named `build.gradle` which can be configured.
+* Describes what the build is about through configuration.
+
+
+=== Companion files
+
+* `settings.gradle`: Configure the project(s) that compose the build
+* `gradle.properties`: Defines properties specific to the build, which can be overriden
+
+=== Additional build artifacts
+
+Directories:
+
+* `buildSrc`
+* `.gradle`
+* `build`
+
+=== Gradle daemon
+
+By default, Gradle will start a background process to execute your builds.
+
+This allows to have a warmed up JVM running your build instead of having a fresh one each time.
+
+* `org.gradle.daemon` can be used to disable the daemon
+* `org.gradle.daemon.idletimeout` can be used to tweak the idle time
+
+=== Parallel builds
+
+By default, Gradle will parallelize tasks of a build.
+
+* `org.gradle.parallel` can be used to disable parallel mode
+* `org.gradle.workers.max` can be used to limit the number of workers used by parallel builds
+** Default to number of CPUs
+
+=== A simple project
+
+// TODO screenshot / structure de répertoires d'un projet java avec wrapper, src/main/java, src/test/java, src/main/resources, gradle.properties
+
+=== A multi project build
+
+// TODO screenshot / structure de répertoires d'un multi projet
+
