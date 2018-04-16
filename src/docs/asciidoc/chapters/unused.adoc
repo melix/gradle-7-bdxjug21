@@ -1,0 +1,21 @@
+=== Task ordering
+
+[source, groovy]
+----
+include::{buildsdir}/ordering.gradle[]
+----
+
+=== Tasks visibility
+
+By default, `gradle tasks` will only display tasks which are part of a group.
+
+[source, groovy]
+----
+include::{buildsdir}/group.gradle[]
+----
+
+=== Task execution graph
+
+A Gradle build is really about executing a set of tasks that produce the needed output.
+The scope of the set is determined by the tasks requested on the command line and all tasks they depend upon.
+

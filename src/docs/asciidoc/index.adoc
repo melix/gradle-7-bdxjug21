@@ -8,7 +8,7 @@ ifndef::sourcedir[:sourcedir: ../java]
 :navigation:
 :menu:
 :status:
-:title-slide-background-image: Background_hdtv_1920_1080.png
+:title-slide-background-image: Background_hdtv_1920_1080_v3.png
 :title-slide-transition: zoom
 :title-slide-transition-speed: fast
 :icons: font

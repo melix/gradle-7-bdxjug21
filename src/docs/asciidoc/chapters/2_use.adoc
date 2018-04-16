@@ -1,20 +1,10 @@
 == Using Gradle
 
-=== The Gradle Wrapper
-
-image::gradle-wrapper.png[]
-
-[NOTE.speaker]
---
-* Exec files
-* Wrapper dir
---
-
-=== Using the Gradle Wrapper
+=== Invoking Gradle using the wrapper
 
 [source]
 ----
-./gradlew tasks
+./gradlew hello
 ----
 
 Note the implicit invocation from the project root.
@@ -37,29 +27,64 @@ Each task can also reference a specific task in a subproject:
 ./gradlew :server:test
 ----
 
-=== Interesting options
+=== Discovering tasks
 
-* `--exclude-task` or `-x`: To exclude one task from the execution graph
+[source]
+----
+./gradlew tasks
+----
+
+Will list all the tasks defined by the project, with a description
+
+=== Getting help on a task
+
+[source]
+----
+./gradlew help --task <taskName>
+----
+
+Will list all projects having the task and give some usage context.
+
+=== Exclude a task
+
+* `--exclude-task` or `-x`
+** To exclude one task from the execution graph
 [source]
 ----
 ./gradlew build -x test
 ----
-* `--continue`: To continue with the build even when a task fails
-** Note: The dependents task(s) of the failed one will still not be executed.
+
+NOTE: This will exclude the specific task _and_ all tasks it depended upon
+
+=== Continue a build
+
+* `--continue`
+** To continue with the build even when a task fails
 [source]
 ----
 ./gradlew test --continue
 ----
 
-=== Task execution graph
+NOTE: The dependents task(s) of the failed one will still not be executed.
 
-A Gradle build is really about executing a set of tasks that produce the needed output.
-The scope of the set is determined by the tasks requested on the command line and all tasks they depend upon.
+=== Continuous build
+
+* `--continuous` or `-t`
+** Runs the tasks every time the input changes
+[source]
+----
+./gradlew -t test
+----
+
+NOTE: Use `<CTRL>-D` to stop the build
 
 === Logging
 
 * Gradle defines 6 log levels: `error`, `quiet`, `warning`, `lifecycle`, `info`, `debug`
 * Default log level (`lifecycle`) is minimalistic
+
+=== Configuring logging
+
 * Command line flags allow to set a different level:
 [source]
 ----
@@ -67,11 +92,11 @@ The scope of the set is determined by the tasks requested on the command line an
 > gradle -q hello
 ----
 
-When troubleshooting, `info` should be your first stop as `debug` has a _lot_ of output.
+NOTE: When troubleshooting, `info` is usually enough, `debug` has a _lot_ of output.
 
 [%notitle]
 [state=demo]
-=== Demo 1
+=== Demo 2.1
 
 Demo
 

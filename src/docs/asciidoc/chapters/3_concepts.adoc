@@ -1,99 +1,151 @@
 == Concepts
 
-=== Tasks
+=== Gradle lifecycle
 
-* Provided by Gradle and plugins, they are the pieces doing the work during a build.
-* Extend a common type, `Task`
+Configuration phase
 
-=== Common methods
+[%step]
+* Discovering projects
+* Build scripts evaluation
+* Model construction
+* Task graph construction
 
-[source, groovy]
-----
-include::{buildsdir}/hello.gradle[]
-----
+=== Gradle lifecycle (2)
 
-* `onlyIf` allows conditional execution
-* `doLast` adding actions to a task
+Execution phase
 
-=== Specific APIs
+[%step]
+* Run tasks that are required by the build invocation
 
-[source, groovy]
-----
-include::{buildsdir}/copy.gradle[]
-----
+[%notitle]
+[state=demo]
+=== Demo 3.1
 
-* `from` and `into` are part of the configuration API from the `Copy` tasks
-* These APIs enable the declarative configuration of a build
-
-=== Tasks visibility
-
-By default, `gradle tasks` will only display tasks which are part of a group.
-
-[source, groovy]
-----
-include::{buildsdir}/group.gradle[]
-----
-
-=== Task dependencies
-
-[source, groovy]
-----
-include::{buildsdir}/depends.gradle[]
-----
-
-The heart of the Gradle execution model
-
-=== Task ordering
-
-[source, groovy]
-----
-include::{buildsdir}/ordering.gradle[]
-----
-
-=== Configurations
-
-A configuration is a container of dependencies and produced artifacts.
-
-A configuration can extend another one.
-
-Dependency resolution strategies of configurations can be adapted.
-
-=== Dependencies
-
-Dependencies represent external resources that your build needs to perform its work.
-
-When declaring a dependency, you tie it to a `Configuration`.
-
-More later on dependency management ...
-
-=== Lifecycle
-
-* Initialisation phase
-** Configuring the execution environment
-** Discovering projects
-
-=== Lifecycle (2)
-
-* Configuration phase
-** Build scripts evaluation
-** Model construction
-** Task graph construction
-
-=== Lifecycle (3)
-
-* Execution phase
+Demo
 
 === Lifecycle best practices
 
 * Do the minimum during configuration
 ** At this stage, Gradle walks all configuration items to determine which need to be part of the execution
 
+=== Concepts by example
+
+What are the building blocks of a _compile_ task for a Java project?
+
+=== Tasks
+
+It is the target of a build execution and does the work.
+
+=== Task actions
+
+[source, groovy]
+----
+include::{buildsdir}/hello.gradle[]
+----
+
+* `doLast` adding actions to a task
+
+=== Task type
+
+[source, groovy]
+----
+include::{buildsdir}/compile.gradle[]
+----
+
+* Provides declarative configuration
+* Task action is defined by the task type
+* Models what the build is about in terms of execution
+
+=== What does _compile_ do then?
+
+Transform Java source files into class files.
+
+=== Task inputs
+
+[%step]
+* Java source files
+* Source encoding
+* Compile options
+* Classpath
+
+=== Task outputs
+
+[%step]
+* Class files
+
+=== Importance of inputs / outputs
+
+You can think of a Gradle task as a function.
+
+Based on a set of inputs, you produce outputs.
+
+And ideally, the same set of inputs results in the same outputs.
+
+=== Inputs origin
+
+[%step]
+* Java source files
+** `SourceSet` concept
+* Source encoding & compile options
+** Task configuration
+* Classpath
+** From associated configuration
+
+=== Configurations
+
+A configuration is a container of dependencies and produced artifacts.
+
+A configuration can extend another one, inheriting its dependencies.
+
+=== Dependencies
+
+A dependency is a pointer to another piece of software required to build, test or run your project.
+
+When declaring a dependency, you tie it to a `Configuration`.
+
+=== In practice
+
+[source, groovy]
+----
+include::{buildsdir}/javaDependencies.gradle[]
+----
+
+=== Constructing the classpath
+
+[%step]
+* Resolve the configuration
+** Resolve the graph of dependencies
+** Retrieve or build the dependencies
+* Build the classpath
+
+=== Implicit task relationships
+
+Executing the compile task requires the configuration to be resolved.
+
+This is known by Gradle through the compile task implementation.
+
+The heart of the Gradle execution model.
+
+=== Explicit task relationships
+
+[source, groovy]
+----
+include::{buildsdir}/depends.gradle[]
+----
+
+Aim for having implicit dependencies, based on proper modelling, instead of having to resort to explicit wiring.
+
+[%notitle]
+[state=demo]
+=== Demo 3.2
+
+Demo
+
 === Building the task graph
 
 Gradle will arrange tasks in an execution graph during the configuration phase:
 
+[%step]
 * Each task to be executed is a node
-* `dependsOn` defines the edges between nodes
+* Implicit and explicit relationships define the edges between nodes
 * No cycles are allowed
-
-This results in a Directed Acyclic Graph

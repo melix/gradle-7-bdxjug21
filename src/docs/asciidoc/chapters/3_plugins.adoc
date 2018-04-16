@@ -2,8 +2,8 @@
 
 === Java Plugins: `java-base`
 
+* Adds model elements
 * Defines additional tasks
-* Defines a set of _conventions_
 * Extends the DSL with declarative elements, such as `SourceSet`
 
 === SourceSet
@@ -16,6 +16,14 @@ Models a source code logical unit:
 * Compilation and runtime classpaths
 * Tasks for processing inputs to outputs
 
+=== Java Plugins: `java`
+
+* Adds task instances
+* Defines a set of _conventions_
+** Defines default values for added tasks
+** Defines `main` and `test` source sets
+* Adds _configurations_
+
 === SourceSet conventions
 
 * Source: `src/<name>/<lang>`
@@ -24,13 +32,6 @@ Models a source code logical unit:
 * Dependency configurations:
 ** Compilation: `<name>Implementation`
 ** Runtime: `<name>Runtime`
-
-=== Java Plugins: `java`
-
-* Adds task instances
-* Defines default values for added tasks
-* Defines `main` and `test` source sets
-* Adds _configurations_
 
 === Naming conventions for `main`
 

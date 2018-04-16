@@ -16,11 +16,10 @@ Others brought by Gradle:
 * By default, named `build.gradle` which can be configured.
 * Describes what the build is about through configuration.
 
-
 === Companion files
 
 * `settings.gradle`: Configure the project(s) that compose the build
-* `gradle.properties`: Defines properties specific to the build, which can be overriden
+* `gradle.properties`: Defines properties specific to the build, which can be overridden
 
 === Additional build artifacts
 
@@ -29,6 +28,16 @@ Directories:
 * `buildSrc`
 * `.gradle`
 * `build`
+
+=== The Gradle Wrapper
+
+image::gradle-wrapper.png[]
+
+[NOTE.speaker]
+--
+* Exec files
+* Wrapper dir
+--
 
 === Gradle daemon
 

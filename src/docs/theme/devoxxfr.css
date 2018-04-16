@@ -52,10 +52,10 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.0em; }
+  font-size: 1.8em; }
 
 .reveal h2 {
-  font-size: 2.0em; }
+  font-size: 1.6em; }
 
 .reveal h3 {
   font-size: 1.2em; }
@@ -407,6 +407,7 @@ html.demo .slide-background{
 
 html.demo .slides{
   font-family: "Montserrat";
+  font-size: 3.0em;
 }
 
 html.bgpicture1 .slide-background{
