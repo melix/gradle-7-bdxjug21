@@ -1,0 +1,11 @@
+def getRevision = {
+    def cmd = 'git rev-parse HEAD'
+    try {
+        def proc = cmd.execute()
+        return proc.text.trim()
+    } catch (IOException) {
+        return 'Unknown'
+    }
+}
+
+ext.revision = getRevision()

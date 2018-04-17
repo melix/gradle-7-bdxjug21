@@ -7,6 +7,12 @@
 
 image::scan.png[link=https://scans.gradle.com/s/hh4n2hv5sd6n2]
 
+[NOTE.speaker]
+--
+* Show basic build scan features based on presentation build
+* TODO Flesh out this description
+--
+
 === How to enable build scans?
 
 * Simply add `--scan` to your build command

@@ -2,45 +2,47 @@
 
 === Plugins
 
-IntelliJ Idea and Eclipse both have a dedicated Gradle plugin.
-
-These plugins enable the generation of configuration files for the respective IDEs.
-
-However integration goes much farther than that for both.
+[%step]
+* Dedicated IDE plugins
+** For IntelliJ: `idea`
+** For Eclipse: `eclipse`
+* Generation of IDE configuration files for project integration
+* Native IDE integration available as well
 
 === IntelliJ Idea
 
-The recommended way of integrating a Gradle project in IntelliJ Idea is simply to import it.
-
-This will enable compiling and running tests for most projects.
-
-Changes to the Gradle build will make the IDE prompt for a refresh, unles automatic import is enabled.
-
+[%step]
+* Recommended: use Idea native integration
+* Imports Gradle projects
+* Enables compilation and tests execution
+* Changes to the Gradle build need to be imported again
+** Unless auto-import is enabled
 
 === Advanced Idea integration
 
-The IDE also enables delegating actions to Gradle, like compilation and test execution.
+* The Gradle view enables invocation of project tasks.
+* The IDE can even delegate all compilation and executions to Gradle
 
 image::idea.png[]
 
 === Customizing Idea integration
 
-Through the application of the `idea` plugin, you can control the configuration of the IDE project.
+[%step]
+* `idea` plugin enables modifying the generated IDE configuration
+* Needed for project with very specific setups
+* Example: configure default run / debug configurations with extra properties
 
-This enables projects that have a particular setup to still integrate well with the IDE.
+=== Eclipse
 
-For example, you will be able to configure test run / debug configurations
-so that the extra properties passed from Gradle are also used in the IDE.
-
-=== Eclipse Buildship
-
-Buildship is the Eclipse subproject that allows deep Gradle integration into the IDE.
-
-Once you have Buildship available as a plugin, you can simply import exising Gradle projects.
-
-Changes to the Gradle build need to be explicitly imported via _Refresh Gradle Project_.
+[%step]
+* Use the `Buildship` IDE plugin
+* Imports Gradle projects
+* Enables compilation and tests execution
+* Changes to the Gradle build need to be imported again
 
 === Advanced Eclipse integration
+
+* Custom Gradle views enable invoking build tasks
 
 image::eclipse.png[]
 

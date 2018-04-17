@@ -1,4 +1,6 @@
 task compileMe(type: JavaCompile) {
+    destinationDir "$buildDir/myDir"
+
     //enable compilation in a separate daemon process
     options.fork = true
 

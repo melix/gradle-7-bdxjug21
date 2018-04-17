@@ -8,18 +8,42 @@ While it adds flexibility, abusing the feature leads to builds that are hard to 
 
 === Gradle extensibility
 
-* Add _extra properties_ to objects
-* Add _extensions_ objects to existing objects
+* Define properties
+* Add _extensions_ to existing objects
 
 Allows built in domain objects to be extended, including `Project`.
 
 Makes the _build language_ extensible.
 
-=== Extra properties
+=== Gradle properties
+
+[%step]
+* Different levels
+* Matching different use cases
+
+=== `gradle.properties` and command line
+
+* Define items that have a sensible default
 
 [source, groovy]
 ----
-include::{buildsdir}/properties.gradle[tag=props]
+org.gradle.parallel = true
+deployUrl = https://example.com/default
+----
+
+Can be overridden on the command line:
+[source]
+----
+./gradlew -Dorg.gradle.parallel=false -PdeployUrl='https://example.com/custom'
+----
+
+=== Project properties
+
+* Added to the `ext` container
+
+[source, groovy]
+----
+include::{buildsdir}/ext.gradle[]
 ----
 
 === Extensions
@@ -35,6 +59,37 @@ include::{buildsdir}/extension.gradle[]
 ----
 include::{buildsdir}/confRules.gradle[]
 ----
+
+=== Implicit task relationships
+
+Tasks can have implicit dependencies:
+
+* `taskA.inputs = taskB.outputs`
+** `jar` task consumes `compileJava` output
+
+This is known by Gradle through task implementations.
+
+The heart of the Gradle execution model.
+
+=== Explicit task relationships
+
+[source, groovy]
+----
+include::{buildsdir}/depends.gradle[]
+----
+
+Aim for having implicit dependencies, based on proper modelling, instead of having to resort to explicit wiring.
+
+[%notitle]
+[state=demo]
+=== Demo 3.2
+
+Demo
+
+[NOTE.speaker]
+--
+* Try to replace compile.dependsOn generated with file collection and then fully implicit
+--
 
 === Implicit task dependencies
 

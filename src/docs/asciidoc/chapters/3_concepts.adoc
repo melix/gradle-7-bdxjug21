@@ -23,6 +23,17 @@ Execution phase
 
 Demo
 
+[NOTE.speaker]
+--
+* Create a simple build.gradle
+* Add two inline tasks that doing a println
+* Execute one task
+** Both println appear
+* Move println to doLast
+* Execute one task
+** Single println appear
+--
+
 === Lifecycle best practices
 
 * Do the minimum during configuration
@@ -118,28 +129,12 @@ include::{buildsdir}/javaDependencies.gradle[]
 ** Retrieve or build the dependencies
 * Build the classpath
 
-=== Implicit task relationships
+=== Invocation chain
 
-Executing the compile task requires the configuration to be resolved.
-
-This is known by Gradle through the compile task implementation.
-
-The heart of the Gradle execution model.
-
-=== Explicit task relationships
-
-[source, groovy]
-----
-include::{buildsdir}/depends.gradle[]
-----
-
-Aim for having implicit dependencies, based on proper modelling, instead of having to resort to explicit wiring.
-
-[%notitle]
-[state=demo]
-=== Demo 3.2
-
-Demo
+[%step]
+* User requests `compileJava`
+* -> Build needs the compileClasspath
+* -> Build needs to resolve the `implementation` configuration
 
 === Building the task graph
 

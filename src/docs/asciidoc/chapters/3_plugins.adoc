@@ -1,5 +1,36 @@
 == Base plugins
 
+=== Plugin `base`
+
+[%steps]
+* Adds tasks
+* Adds conventions
+* Provides some build structure
+
+=== Base configurations
+
+* `archives`
+** A configuration that contains the production artifacts of a project
+** Has a matching `uploadArchives` task for uploading the artifacts of `archives`
+
+=== Base conventions
+
+Properties and defaults at project level:
+
+[%step]
+* `archivesBaseName` that defaults to `project.name`
+* `distsDirName` that defaults to `distributions`
+* `libsDirName` that defaults to `libs`
+
+=== Base conventions (2)
+
+Default values for archive tasks:
+
+[%step]
+* `destinationDir` with defaults depending on the type of archive produced
+* `version` that default to `project.version`
+* `baseName` that defaults to `archiveBaseName`
+
 === Java Plugins: `java-base`
 
 [%step]
@@ -63,6 +94,17 @@ compileJava
 
 [.stretch]
 image::javaLibPluginConfigurations.png[width=1000, height=261]
+
+[%notitle]
+[state=demo]
+=== Demo 3.2
+
+Demo
+
+[NOTE.speaker]
+--
+* Demo creation of integration test sourceSet
+--
 
 === Plugin portal
 

@@ -19,6 +19,19 @@ image::simpleProject.png[]
 
 image::multiProject.png[]
 
+[%notitle]
+[state=demo]
+=== Demo 1.1
+
+Demo
+
+[NOTE.speaker]
+--
+* Browse build files
+* Show specific project build files
+* Show buildSrc dir
+--
+
 === The build file
 
 * By default, named `build.gradle` which can be configured.
@@ -39,13 +52,9 @@ Directories:
 
 === The Gradle Wrapper
 
-image::gradle-wrapper.png[]
-
-[NOTE.speaker]
---
-* Exec files
-* Wrapper dir
---
+[%step]
+* Bootstraps Gradle for project contributors
+* Project controls Gradle version
 
 === Gradle daemon
 
@@ -53,14 +62,16 @@ By default, Gradle will start a background process to execute your builds.
 
 This allows to have a warmed up JVM running your build instead of having a fresh one each time.
 
+[%step]
 * `org.gradle.daemon` can be used to disable the daemon
 * `org.gradle.daemon.idletimeout` can be used to tweak the idle time
 
 === Parallel builds
 
-By default, Gradle will parallelize tasks of a build.
+Gradle can run tasks of decoupled projects in parallel
 
+[%step]
 * `org.gradle.parallel` can be used to disable parallel mode
 * `org.gradle.workers.max` can be used to limit the number of workers used by parallel builds
-** Default to number of CPUs
+** Defaults to number of CPUs
 

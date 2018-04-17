@@ -1,11 +1,11 @@
-tasks.all {
-    doFirst {
-        println 'rule for all tasks, including those not yet created'
-    }
+configurations.all {
+    println "Configuration $it.name"
 }
 tasks.withType(Jar) {
     destinationDir = "somePath"
     doLast { /* do something */ }
 }
 
-tasks.whenTaskAdded { task -> println task.name }
+plugins.withType(IdeaPlugin) {
+    // Perform actions if plugin gets applied
+}
