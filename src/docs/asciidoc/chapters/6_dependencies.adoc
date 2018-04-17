@@ -1,0 +1,117 @@
+== Dependency management
+
+=== Dependency management engine
+
+* Gradle has its own engine
+* Supports Ivy, Maven and more
+* Aims at consistency
+* Doesn't use `.m2` by default
+* Local cache knows where a dependency comes from
+
+=== Declaring repositories
+
+Basics
+
+[source,groovy]
+----
+repositories {
+   mavenCentral()
+   jcenter()
+   google()   
+}
+----
+
+=== Declaring repositories
+
+Uncommon
+
+[source,groovy]
+----
+repositories {
+   maven {
+      url "https://my-repo/
+   }
+
+   ivy {
+      url "https://my-repo/
+   }
+
+   flatDir name: 'libs', dirs: "$projectDir/libs"
+}
+----
+
+=== Maven local
+
+* Should almost never use it
+* Mainly for Gradle/Maven interoperability
+
+=== Dependency notations
+
+[source,groovy]
+----
+dependencies {
+   api project(':core')
+   implementation "com.google.code.gson:gson:2.8.2"
+   implementation("org.ow2.asm:asm") {
+      version { prefer "6.1.1" }
+      because "Only version compatible with JDK 11"
+   }
+
+   testImplementation group:"junit", name:"junit", version:"4.12"
+}
+----
+
+=== Dependency versions
+
+* `1.0`: fixed, cached forever
+* `[1.0, )`: dynamic, cached for 24h
+* `1.0-SNAPSHOT`: changing, cached for 24h
+
+* Use `--refresh-dependencies` to force update
+
+=== Danger zone
+
+[source,groovy]
+----
+dependencies {
+   api('dont.do.this.at:home:1.0') {
+      changing = true
+   }
+}
+----
+
+=== Resolution strategy
+
+[source,groovy]
+----
+configurations.all {
+    resolutionStrategy {
+        failOnVersionConflict()
+        cacheDynamicVersionsFor(5, HOURS)        
+    }
+}
+----
+
+=== Fixing dependency management issues
+
+[source,groovy]
+----
+configurations {
+   compileClasspath.resolutionStrategy {
+      eachDependency { DependencyResolveDetails details ->
+         // specifying a fixed version for all 
+         // libraries with 'org.gradle' group
+         if (details.requested.group == 'org.gradle') {
+            details.useVersion '1.4'
+         }
+      }
+   }
+}
+----
+
+=== Making sense of the mess
+
+Talk Jeudi 19, 14:55 - 15:40, Maillot
+
+https://cfp.devoxx.fr/2018/talk/EAF-9391/En_finir_avec_les_problemes_de_gestion_de_dependances[En finir avec les problèmes de gestion de dépendances]
+
