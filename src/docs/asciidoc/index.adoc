@@ -124,9 +124,9 @@ Get you started with Gradle
 [.stretch]
 image::survival.png[]
 
-include::chapters/0_scans.adoc[]
-
 include::chapters/1_anatomy.adoc[]
+
+include::chapters/0_scans.adoc[]
 
 include::chapters/2_use.adoc[]
 

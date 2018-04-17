@@ -129,6 +129,25 @@ However a project can define a set of default tasks to be run when it is invoked
 include::{buildsdir}/default.gradle[]
 ----
 
+=== Gradle daemon
+
+By default, Gradle will start a background process to execute your builds.
+
+This allows to have a warmed up JVM running your build instead of having a fresh one each time.
+
+[%step]
+* `org.gradle.daemon` can be used to disable the daemon
+* `org.gradle.daemon.idletimeout` can be used to tweak the idle time
+
+=== Parallel builds
+
+Gradle can run tasks of decoupled projects in parallel
+
+[%step]
+* `org.gradle.parallel` can be used to disable parallel mode
+* `org.gradle.workers.max` can be used to limit the number of workers used by parallel builds
+** Defaults to number of CPUs
+
 [%notitle]
 [state=demo]
 === Demo 2.1

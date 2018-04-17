@@ -91,29 +91,6 @@ Demo
 * Try to replace compile.dependsOn generated with file collection and then fully implicit
 --
 
-=== Implicit task dependencies
-
-* `files(...)` definitions can be _buildable_
-** You can indicate which tasks builds its contents
-* Buildable input files / dir allows inferring the dependencies
-
-[source, groovy]
-----
-task generatedByMe { doLast { /*write into mydir*/ } }
-def myFiles = files("$buildDir/mydir") {
-  builtBy generatedByMe // could be many tasks
-}
-
-task copy(type: Copy) {
-  from myFiles // implicit dependsOn
-  into "someDir"
-}
-
-compileJava {
-  classpath = myFiles // implicit dependsOn
-}
-----
-
 === SourceSet output
 
 Source sets have an `output` property. It references:
