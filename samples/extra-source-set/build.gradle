@@ -9,9 +9,11 @@ plugins {
     id 'java'
 }
 
-sourceSets {
-    integTest {
-        compileClasspath += main.output
-        runtimeClasspath += main.output
-    }
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    runtime 'org.slf4j:slf4j-simple:1.7.25'
 }
