@@ -58,6 +58,8 @@ how to stay out of management?!?'''
 
 == What is Gradle?
 
+=== Gradle's purpose
+
 Gradle is a build and automation tool.
 
 Gradle can automate the building, testing, publishing, deployment and more of software packages
@@ -97,6 +99,8 @@ The company behind Gradle.
 * Training: online, public and in-house
 
 == Objectives
+
+=== Objectives
 
 Get you started with Gradle
 

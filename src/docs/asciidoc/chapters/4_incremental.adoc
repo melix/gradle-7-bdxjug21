@@ -81,6 +81,10 @@ public class ShadedJar extends DefaultTask {
 
 === Know why your task is out-of-date
 
+[%notitle]
+[state=demo]
+=== Demo 4.1
+
 Demo
 
 === Incremental task inputs

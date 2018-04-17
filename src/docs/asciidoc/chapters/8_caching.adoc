@@ -64,3 +64,9 @@ buildCache {
     }
 }
 ----
+
+[%notitle]
+[state=demo]
+=== Demo 8.1
+
+Demo
