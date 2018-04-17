@@ -11,6 +11,14 @@ Others brought by Gradle:
 
 * The name of the project is the name of the containing folder
 
+=== A simple project
+
+image::simpleProject.png[]
+
+=== A multi project build
+
+image::multiProject.png[]
+
 === The build file
 
 * By default, named `build.gradle` which can be configured.
@@ -55,12 +63,4 @@ By default, Gradle will parallelize tasks of a build.
 * `org.gradle.parallel` can be used to disable parallel mode
 * `org.gradle.workers.max` can be used to limit the number of workers used by parallel builds
 ** Default to number of CPUs
-
-=== A simple project
-
-// TODO screenshot / structure de répertoires d'un projet java avec wrapper, src/main/java, src/test/java, src/main/resources, gradle.properties
-
-=== A multi project build
-
-// TODO screenshot / structure de répertoires d'un multi projet
 

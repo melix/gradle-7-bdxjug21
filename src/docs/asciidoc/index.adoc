@@ -1,6 +1,3 @@
-= Je passe à Gradle Maturité, performance et plaisir!
-Cédric Champeau (@CedricChampeau), Gradle Inc. Louis Jacomet (@ljacomet), Gradle Inc.
-2018-04-18
 :revnumber: {project-version}
 :example-caption!:
 ifndef::imagesdir[:imagesdir: images]
@@ -12,6 +9,12 @@ ifndef::sourcedir[:sourcedir: ../java]
 :title-slide-transition: zoom
 :title-slide-transition-speed: fast
 :icons: font
+
+= : Je passe à Gradle Maturité, performance et plaisir!
+
+Cédric Champeau (@CedricChampeau), Gradle Inc.
+
+Louis Jacomet (@ljacomet), Gradle Inc.
 
 == Who are we?
 
@@ -60,9 +63,28 @@ Gradle is a build and automation tool.
 Gradle can automate the building, testing, publishing, deployment and more of software packages
 or other types of projects such as generated static websites, generated documentation or indeed anything else.
 
+[%step]
 * JVM based
 * Implemented in Java
 * 100% Free Open Source - Apache Standard License 2.0
+
+=== Agnostic Build System
+
+* Java ecosystem
+** Groovy, Kotlin, Scala, ...
+* Native ecosystem
+** C, C++, Swift, ...
+* Android
+* Misc
+** Go, Asciidoctor, ...
+
+=== Gradle in figures
+
+[%step]
+* 5.0M downloads / month
+* https://techcrunch.com/2017/04/07/tracking-the-explosive-growth-of-open-source-software/[#17 OSS projects worldwide]
+* 35 Gradle Engineers
+* 300K builds/week @LinkedIn
 
 === Gradle Inc.
 
@@ -74,7 +96,13 @@ The company behind Gradle.
 * Gradle consulting, support, development services etc.
 * Training: online, public and in-house
 
-Germany, Australia, UK, France, Switzerland, Austria, Poland, Hungary, Spain, Brazil, Belgium, Canada and the US.
+== Objectives
+
+Get you started with Gradle
+
+[%step]
+* As a user needing to interact with a Gradle project
+* As a build author starting to use Gradle for your projects
 
 == Agenda
 
@@ -87,11 +115,21 @@ Germany, Australia, UK, France, Switzerland, Austria, Poland, Hungary, Spain, Br
 * IDE integration
 * Caching
 
+== Gradle survival guide
+
+[.stretch]
+image::survival.png[]
+
 include::chapters/0_scans.adoc[]
 
 include::chapters/1_anatomy.adoc[]
 
 include::chapters/2_use.adoc[]
+
+== Gradle construction guide
+
+[.stretch]
+image::construction.png[]
 
 include::chapters/3_concepts.adoc[]
 

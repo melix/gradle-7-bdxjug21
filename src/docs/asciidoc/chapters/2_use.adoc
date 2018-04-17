@@ -80,6 +80,7 @@ NOTE: Use `<CTRL>-D` to stop the build
 
 === Logging
 
+[%step]
 * Gradle defines 6 log levels: `error`, `quiet`, `warning`, `lifecycle`, `info`, `debug`
 * Default log level (`lifecycle`) is minimalistic
 
@@ -93,6 +94,40 @@ NOTE: Use `<CTRL>-D` to stop the build
 ----
 
 NOTE: When troubleshooting, `info` is usually enough, `debug` has a _lot_ of output.
+
+=== Convention tasks
+
+Gradle built-in plugins define a set of convention tasks.
+
+These are used as as entry points to request execution of canonical project operations.
+
+=== `assemble` task
+
+This convention task indicates that all output producing tasks have to be executed.
+
+=== `check` task
+
+This convention task indicates that all verification tasks are to be executed.
+
+=== `build` task
+
+This convention task triggers `assemble` and `check`.
+
+=== No task argument?
+
+[source]
+----
+./gradlew
+----
+
+The above will invoke the `help` task by default.
+
+However a project can define a set of default tasks to be run when it is invoked without a task argument.
+
+[source, groovy]
+----
+include::{buildsdir}/default.gradle[]
+----
 
 [%notitle]
 [state=demo]
