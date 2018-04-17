@@ -89,8 +89,8 @@ NOTE: Use `<CTRL>-D` to stop the build
 * Command line flags allow to set a different level:
 [source]
 ----
-> gradle hello -i
-> gradle -q hello
+$ gradle hello -i
+$ gradle -q hello
 ----
 
 NOTE: When troubleshooting, `info` is usually enough, `debug` has a _lot_ of output.

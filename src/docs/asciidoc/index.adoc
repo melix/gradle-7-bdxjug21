@@ -62,9 +62,6 @@ how to stay out of management?!?'''
 
 Gradle is a build and automation tool.
 
-Gradle can automate the building, testing, publishing, deployment and more of software packages
-or other types of projects such as generated static websites, generated documentation or indeed anything else.
-
 [%step]
 * JVM based
 * Implemented in Java
