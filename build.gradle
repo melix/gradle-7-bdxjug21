@@ -9,8 +9,14 @@ buildscript {
         classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
         classpath 'commons-httpclient:commons-httpclient:3.1'
         classpath 'io.ratpack:ratpack-groovy:1.2.0'
+        classpath 'org.ajoberstar:gradle-git:1.1.0'
     }
 
+    configurations.all {
+        resolutionStrategy {
+          force "com.jcraft:jsch:0.1.54"
+        }
+    }
 }
 
 plugins {
@@ -85,6 +91,7 @@ task copyScreencasts(type: Copy) {
 }
 
 apply from: 'gradle/asciidoctor.gradle'
+apply from: 'gradle/github.gradle'
 
 allprojects {
     apply plugin: 'idea'
