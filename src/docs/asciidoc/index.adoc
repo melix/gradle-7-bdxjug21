@@ -155,3 +155,11 @@ include::chapters/8_caching.adoc[]
 * Improved build scan feature set
 ** Searchable build history
 ** Build comparison
+
+=== Gradle à Devoxx FR
+
+* https://cfp.devoxx.fr/2018/talk/EAF-9391/En_finir_avec_les_problemes_de_gestion_de_dependances[En finir avec les problèmes de gestion de dépendances]
+**  Jeudi, 14:55 - 15:40 Maillot
+* https://cfp.devoxx.fr/2018/talk/FOU-3733/BOF_Gradle[BOF Gradle]
+**  Jeudi, 20:40 - 21:30 Paris 221M-222M Lab
+
