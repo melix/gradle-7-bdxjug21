@@ -18,8 +18,12 @@ dependencies {
 
     components.all(RemoveGroovyRule::class.java)
 
-    configurations.all {
-        resolutionStrategy.force("com.jcraft:jsch:0.1.54")
+    constraints {
+        implementation("com.jcraft:jsch") {
+            version {
+                strictly("0.1.54")
+            }
+        }
     }
 }
 
