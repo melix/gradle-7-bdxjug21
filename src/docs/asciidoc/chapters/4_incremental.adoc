@@ -36,9 +36,9 @@ A task is UP-TO-DATE iff:
 [source,groovy]
 ----
 task shadedJar(type: ShadedJar) {
-   jarFile = file("$buildDir/libs/shaded.jar")
-   classpath = configurations.runtime
-   mapping = ['org.apache': 'shaded.org.apache']
+   jarFile.set(file("$buildDir/libs/shaded.jar"))
+   classpath.from(configurations.runtimeClasspath)
+   mapping.put('org.apache', 'shaded.org.apache')
 }
 ----
 
@@ -50,13 +50,13 @@ task shadedJar(type: ShadedJar) {
 
 [source,java]
 ----
-public class ShadedJar extends DefaultTask {
+public abstract class ShadedJar extends DefaultTask {
    ...
    @InputFiles
-   FileCollection getClasspath() { ... }
+   abstract ConfigurableFileCollection getClasspath();
 
    @Input
-   Map<String, String> getMapping() { ... }
+   abstract MapProperty<String, String> getMapping();
 }
 ----
 
@@ -64,11 +64,11 @@ public class ShadedJar extends DefaultTask {
 
 [source,java]
 ----
-public class ShadedJar extends DefaultTask {
+public abstract class ShadedJar extends DefaultTask {
    ...
 
    @OutputFile
-   File getJarFile() { ... }
+   abstract RegularFileProperty getJarFile();
 }
 ----
 
@@ -79,45 +79,8 @@ public class ShadedJar extends DefaultTask {
 - `@CompileClasspath`: **Class** file contents, limited to ABI
 - `@Input`: Value change
 
-=== Know why your task is out-of-date
-
-[%notitle]
-[state=demo]
-=== Demo 4.1
-
-Demo
-
 === Incremental task inputs
 
 * Know precisely _which_ files have changed
 * Task action can perform the minimal amount of work
-
-=== Incremental task inputs
-
-[source,java]
-----
-@TaskAction
-public void execute(IncrementalTaskInputs inputs) {
-   if (!inputs.isIncremental()) {
-      // clean build, for example
-      // ...
-   } else {
-      inputs.outOfDate(change ->
-         if (change.isAdded()) {
-           ...
-         } else if (change.isRemoved()) {
-           ...
-         } else {
-            ...
-         }
-      });
-   }
-}
-----        
-
-=== Incrementality gotchas
-
-Adding a timestamp to a jar manifest will make the jar task always out of date.
-
-What if you do want / need that? Maybe you could only do it for a release build.
-
+* No time for this today!

@@ -4,7 +4,6 @@
 
 Configuration phase
 
-[%step]
 * Discovering projects
 * Build scripts evaluation
 * Model construction
@@ -14,7 +13,6 @@ Configuration phase
 
 Execution phase
 
-[%step]
 * Run tasks that are required by the build invocation
 
 [%notitle]
@@ -73,7 +71,6 @@ Transform Java source files into class files.
 
 === Task inputs
 
-[%step]
 * Java source files
 * Source encoding
 * Compile options
@@ -81,7 +78,6 @@ Transform Java source files into class files.
 
 === Task outputs
 
-[%step]
 * Class files
 
 === Importance of inputs / outputs
@@ -94,7 +90,6 @@ And ideally, the same set of inputs results in the same outputs.
 
 === Inputs origin
 
-[%step]
 * Java source files
 ** `SourceSet` concept
 * Source encoding & compile options
@@ -123,7 +118,6 @@ include::{buildsdir}/javaDependencies.gradle[]
 
 === Constructing the classpath
 
-[%step]
 * Resolve the configuration
 ** Resolve the graph of dependencies
 ** Retrieve or build the dependencies
@@ -131,7 +125,6 @@ include::{buildsdir}/javaDependencies.gradle[]
 
 === Invocation chain
 
-[%step]
 * User requests `compileJava`
 * -> Build needs the compileClasspath
 * -> Build needs to resolve the `implementation` configuration
@@ -140,7 +133,6 @@ include::{buildsdir}/javaDependencies.gradle[]
 
 Gradle will arrange tasks in an execution graph during the configuration phase:
 
-[%step]
 * Each task to be executed is a node
 * Implicit and explicit relationships define the edges between nodes
 * No cycles are allowed

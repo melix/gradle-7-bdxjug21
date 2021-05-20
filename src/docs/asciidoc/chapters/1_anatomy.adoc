@@ -1,5 +1,13 @@
 == Anatomy of a Gradle project
 
+[state=demo]
+[%notitle]
+=== Demo
+
+Gradle Init Demo
+
+=== Summary
+
 Gradle is based on a set of conventions.
 
 Some inherited from the history of Java build systems:
@@ -19,18 +27,6 @@ image::simpleProject.png[]
 
 image::multiProject.png[]
 
-[%notitle]
-[state=demo]
-=== Demo 1.1
-
-Demo
-
-[NOTE.speaker]
---
-* Browse build files
-* Show specific project build files
-* Show buildSrc dir
---
 
 === The build file
 

@@ -78,56 +78,65 @@ NOTE: The dependents task(s) of the failed one will still not be executed.
 
 NOTE: Use `<CTRL>-D` to stop the build
 
-=== Logging
+=== Lifecycle
 
-[%step]
-* Gradle defines 6 log levels: `error`, `quiet`, `warning`, `lifecycle`, `info`, `debug`
-* Default log level (`lifecycle`) is minimalistic
+++++
+<div style="font-size:medium">
+++++
 
-=== Configuring logging
+[cols="a,a,3a"]
+|===
+|Maven |Gradle |Description
 
-* Command line flags allow to set a different level:
-[source]
-----
-$ gradle hello -i
-$ gradle -q hello
-----
+|clean
+|clean
+|Removes the outputs of tasks
 
-NOTE: When troubleshooting, `info` is usually enough, `debug` has a _lot_ of output.
+|compile
+|classes
+|Generates the classes from source files
 
-=== Convention tasks
+|test
+|test
+|Executes unit tests
 
-Gradle built-in plugins define a set of convention tasks.
+|===
 
-These are used as as entry points to request execution of canonical project operations.
+++++
+</div>
+++++
 
-=== `assemble` task
+=== Lifecycle
 
-This convention task indicates that all output producing tasks have to be executed.
+++++
+<div style="font-size:medium">
+++++
 
-=== `check` task
+[cols="a,a,3a"]
+|===
+|Maven |Gradle |Description
 
-This convention task indicates that all verification tasks are to be executed.
+|package
+|assemble
+|Creates a jar
 
-=== `build` task
+|verify
+|check
+|Runs all tests, integration tests, quality checks, ...
 
-This convention task triggers `assemble` and `check`.
+|install
+|publishToMavenLocal
+|Gradle doesn't need a local repository, but should you need Maven interoperability, you can add the `maven-publish` plugin to add this task
 
-=== No task argument?
+|deploy
+|publishToMavenRepository
+|This tasks is _not_ available by default, as it depends on which type of repository you deploy to. In general you just apply the `maven-publish` plugin to add this task
 
-[source]
-----
-./gradlew
-----
+|===
 
-The above will invoke the `help` task by default.
-
-However a project can define a set of default tasks to be run when it is invoked without a task argument.
-
-[source, groovy]
-----
-include::{buildsdir}/default.gradle[]
-----
+++++
+</div>
+++++
 
 === Gradle daemon
 
@@ -135,7 +144,6 @@ By default, Gradle will start a background process to execute your builds.
 
 This allows to have a warmed up JVM running your build instead of having a fresh one each time.
 
-[%step]
 * `org.gradle.daemon` can be used to disable the daemon
 * `org.gradle.daemon.idletimeout` can be used to tweak the idle time
 
@@ -143,22 +151,6 @@ This allows to have a warmed up JVM running your build instead of having a fresh
 
 Gradle can run tasks of decoupled projects in parallel
 
-[%step]
 * `org.gradle.parallel` can be used to disable parallel mode
 * `org.gradle.workers.max` can be used to limit the number of workers used by parallel builds
 ** Defaults to number of CPUs
-
-[%notitle]
-[state=demo]
-=== Demo 2.1
-
-Demo
-
-[NOTE.speaker]
---
-Cover:
-
-* Invocation camel case
-* One or more tasks
-* Think result instead of lifecycle
---

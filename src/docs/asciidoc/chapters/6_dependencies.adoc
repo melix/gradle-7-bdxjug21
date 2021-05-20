@@ -16,8 +16,7 @@ Basics
 ----
 repositories {
    mavenCentral()
-   jcenter()
-   google()   
+   google()
 }
 ----
 
@@ -69,17 +68,6 @@ dependencies {
 
 * Use `--refresh-dependencies` to force update
 
-=== Danger zone
-
-[source,groovy]
-----
-dependencies {
-   api('dont.do.this.at:home:1.0') {
-      changing = true
-   }
-}
-----
-
 === Resolution strategy
 
 [source,groovy]
@@ -92,26 +80,6 @@ configurations.all {
 }
 ----
 
-=== Fixing dependency management issues
+== Demo
 
-[source,groovy]
-----
-configurations {
-   compileClasspath.resolutionStrategy {
-      eachDependency { DependencyResolveDetails details ->
-         // specifying a fixed version for all 
-         // libraries with 'org.gradle' group
-         if (details.requested.group == 'org.gradle') {
-            details.useVersion '1.4'
-         }
-      }
-   }
-}
-----
-
-=== Making sense of the mess
-
-Talk Jeudi 19, 14:55 - 15:40, Maillot
-
-https://cfp.devoxx.fr/2018/talk/EAF-9391/En_finir_avec_les_problemes_de_gestion_de_dependances[En finir avec les problèmes de gestion de dépendances]
-
+Looking at the JDoctor build
